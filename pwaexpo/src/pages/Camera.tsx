@@ -1,10 +1,13 @@
 import React from 'react';
 import { View } from 'react-native';
-
-// import { Container } from './styles';
+import { Camera as ExpoCamera} from 'expo-camera';   
 
 const Main: React.FC = () => {
-  return <View />;
+    return ( 
+        <View style={{ flex: 1 }}>
+            <ExpoCamera style={{ flex: 1 }} />
+        </View> 
+    ); 
 }
 
-export default Main;
+    export default Main;

@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, Image, Text } from 'react-native';
+
+interface Member {
+    login: string;
+    avatar_url: string;
+}
 
 const  Main: React.FC = () =>{
-   const [menbers, setMenbers] = useState([]);
+   const [member, setMenbers] = useState<Member[]>([]);
 
    useEffect(() => {
     fetch('https://api.github.com/orgs/rocketseat/menbers').then(response => {
@@ -13,17 +18,33 @@ const  Main: React.FC = () =>{
    }, []);
   return (
     <FlatList 
-        data = {menbers}
+        contentContainerStyle={{ padding: 24 }}
+        data = {member}      
         keyExtractor={member => member.login}
         renderItem = {({item: member}) => {
             return (
-                <view>
-                    <Image /> widt
+                <view /* style={styles.member} */>
+                    <Image source={{ uri: member.avatar_url }} /> 
+                    <Text>{member.login}</Text>
                 </view>
             );
         }}
-    />
+    /> 
   );
 }
+
+/* const styles = StyleSheet.create({
+member: {
+    flexDirection: 'row',
+    alignItens: 'center',
+    marginBotton: 20
+},
+    image: {
+        width: 48,
+        heidth: 48,
+        bordeRadius: 24
+        marginRight: 16
+    }
+}); */
 
 export default  Main;
