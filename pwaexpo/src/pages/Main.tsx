@@ -10,7 +10,7 @@ const  Main: React.FC = () =>{
    const [member, setMenbers] = useState<Member[]>([]);
 
    useEffect(() => {
-    fetch('https://api.github.com/orgs/rocketseat/menbers').then(response => {
+<!--     fetch('').then(response => {  adicione um valor como link para o banco de dados. -->  
         response.json().then(data =>{
             setMenbers(data);
         });
